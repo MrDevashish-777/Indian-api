@@ -33,6 +33,11 @@ def get_controller(request: Request) -> WorkerController:
     return controller
 
 
+@router.post("/admin/auth/validate")
+async def validate_admin_auth(_auth: None = Depends(require_admin_auth)):
+    return {"ok": True}
+
+
 @router.get("/ai/status")
 async def ai_status(
     _auth: None = Depends(require_admin_auth),
